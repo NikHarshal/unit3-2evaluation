@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      a{
+        text-decoration: none;
+      }
+      #navbar{
+        height: 30px;
+        width: 100%;
+        
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: rgb(229, 252, 245);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="navbar">
+      <!--Add navbar divs here-->
+      <!-- Link to bucket.html -->
+      <div id="navbar">
+       <a href=""> Login</a> &nbsp;&nbsp;
+        <a href="">Sign-Up</a> &nbsp;&nbsp;
+        <a href="">Items</a> &nbsp;&nbsp;
+        <a href="bucket.html">Buckrt</a> &nbsp;&nbsp;
+        <p>0</p>  &nbsp;&nbsp;
+        
+
+      </div>
+      <div id="menu">
+        <!--Show total number of coffee added to bucket here, do not add anything only Total count. Not even "Count - 5" but like this "5" -->
+      </div>
+    </div>
+
+    <div id="">
+      <!--Show coffee list here in grid format-->
+      <!-- add an add to bucket button to each item, give it HTML id as 'add_to_bucket' -->
+    </div>
+  </body>
+</html>
+<!-- <script src="/scripts/index.js"></script> --> 
+<script>
+  const  url="https://masai-mock-api.herokuapp.com/coffee/menu"
+  async function coffeeData(){
+    try {
+    let res= await fetch(url);
+    let data=await res.json();
+    append(data.menu.data)
+    console.log(data.menu.data);
+   // return data
+    } catch (error) {
+      console.log("error");
+    }
+}
+coffeeData()
+function append(data){
+  let menu=document.getElementById("menu");
+  data.forEach(function(el){
+   
+     let img=document.createElement("img")
+     img.src=el.image
+     let name=document.createElement("p")
+     name.innerText=el.title
+     let price=document.createElement("h4")
+     price.innerText=el.price
+   //  let but=document.createElement("button").addEventListener(onclick,"mybtnfunction()")
+     //btn.innerText="Add To bucket"
+     let div=document.createElement("div")
+     div.append(img,name,price,btn)
+     menu.append(div)
+     
+  })
+ 
+
+}
+</script>
